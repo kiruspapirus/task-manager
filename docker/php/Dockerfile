@@ -1,4 +1,3 @@
-# docker/php/Dockerfile
 FROM php:8.2-fpm-alpine
 
 # Устанавливаем системные зависимости
@@ -21,6 +20,9 @@ RUN docker-php-ext-install \
     bcmath \
     gd \
     zip
+
+# Включаем opcache для разработки
+RUN docker-php-ext-enable opcache
 
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
